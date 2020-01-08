@@ -1,37 +1,33 @@
-//
-//
-import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import MiniPalette from './MiniPalette';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from "react";
+import MiniPalette from "./MiniPalette";
+import { withStyles } from "@material-ui/styles";
 
 const styles = {
   root: {
-    backgroundColor: 'blue',
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'center'
+    backgroundColor: "blue",
+    height: "100vh",
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "center"
   },
   container: {
-    width: '50%',
-    display: 'flex',
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    flexWrap: 'wrap'
+    width: "50%",
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+    flexWrap: "wrap"
   },
   nav: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-    color: 'white'
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between"
   },
   palettes: {
-    boxSizing: 'border-box',
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3,30%)',
-    gridGap: '5%'
+    boxSizing: "border-box",
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 30%)",
+    gridGap: "5%"
   }
 };
 
@@ -39,7 +35,6 @@ class PaletteList extends Component {
   goToPalette(id) {
     this.props.history.push(`/palette/${id}`);
   }
-
   render() {
     const { palettes, classes } = this.props;
     return (
@@ -50,8 +45,6 @@ class PaletteList extends Component {
           </nav>
           <div className={classes.palettes}>
             {palettes.map(palette => (
-              // <Link to={`/palette/${palette.id}`}>
-              // </Link>
               <MiniPalette
                 {...palette}
                 handleClick={() => this.goToPalette(palette.id)}
@@ -63,5 +56,4 @@ class PaletteList extends Component {
     );
   }
 }
-
 export default withStyles(styles)(PaletteList);
