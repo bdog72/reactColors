@@ -14,8 +14,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Button from '@material-ui/core/Button';
 
-const drawerWidth = 240;
+import { ChromePicker } from 'react-color';
+
+const drawerWidth = 400;
 
 const styles = theme => ({
   root: {
@@ -58,7 +61,8 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    // padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -133,6 +137,22 @@ class NewPaletteForm extends Component {
             </IconButton>
           </div>
           <Divider />
+          <Typography variant="h4">Design Your Palette</Typography>
+          <div>
+            <Button variant="contained" color="secondary">
+              Clear Me
+            </Button>
+            <Button variant="contained" color="primary">
+              Random Color
+            </Button>
+          </div>
+          <ChromePicker
+            color="blue"
+            onChangeComplete={newColor => console.log(newColor)}
+          />
+          <Button variant="contained" color="primary">
+            Add Color
+          </Button>
         </Drawer>
         <main
           className={classNames(classes.content, {
