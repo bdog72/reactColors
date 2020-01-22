@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 // import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 // import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { SortableElement } from 'react-sortable-hoc';
+
 const styles = {
   root: {
     width: '20%',
@@ -39,7 +41,7 @@ const styles = {
   }
 };
 
-function DraggableColorBox(props) {
+const DraggableColorBox = SortableElement(props => {
   const { classes, handleClick, name, color } = props;
   return (
     // prettier-ignore
@@ -52,6 +54,6 @@ function DraggableColorBox(props) {
       </div>
     </div>
   );
-}
+});
 
 export default withStyles(styles)(DraggableColorBox);
