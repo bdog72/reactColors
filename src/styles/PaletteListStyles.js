@@ -4,6 +4,15 @@ import sizes from './sizes';
 import bg from './bg.svg';
 
 export default {
+  '@global': {
+    '.fade-exit': {
+      opacity: 1
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity 500ms ease-out'
+    }
+  },
   root: {
     // backgroundColor: 'blue',
     height: '100vh',
@@ -16,7 +25,8 @@ export default {
     overflow: 'scroll'
   },
   heading: {
-    fontSize: '2rem'
+    fontSize: '2rem',
+    color: 'black'
   },
   container: {
     width: '50%',
@@ -38,7 +48,8 @@ export default {
     alignItems: 'center',
     color: 'white',
     '& a': {
-      color: 'white'
+      color: 'black',
+      letterSpacing: '2px'
     }
   },
   palettes: {
