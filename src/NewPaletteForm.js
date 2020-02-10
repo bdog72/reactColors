@@ -11,8 +11,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
-import {styles} from './styles/NewPaletteFormStyles'
-
+import { styles } from './styles/NewPaletteFormStyles';
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -148,6 +147,7 @@ class NewPaletteForm extends Component {
             removeColor={this.removeColor}
             axis="xy"
             onSortEnd={this.onSortEnd}
+            distance={20}
           />
         </main>
       </div>
