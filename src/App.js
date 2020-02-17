@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import Palette from "./Palette";
-import PaletteList from "./PaletteList";
-import SingleColorPalette from "./SingleColorPalette";
-import seedColors from "./seedColors";
-import NewPaletteForm from "./NewPaletteForm";
-import { generatePalette } from "./colorHelpers";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Page from "./Page";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Palette from './Palette';
+import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
+import seedColors from './seedColors';
+import NewPaletteForm from './NewPaletteForm';
+import { generatePalette } from './colorHelpers';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Page from './Page';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
+    const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
     this.state = { palettes: savedPalettes || seedColors };
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
@@ -38,7 +38,7 @@ class App extends Component {
   syncLocalStorage() {
     //save palettes to local storage
     window.localStorage.setItem(
-      "palettes",
+      'palettes',
       JSON.stringify(this.state.palettes)
     );
   }
@@ -47,11 +47,11 @@ class App extends Component {
       <Route
         render={({ location }) => (
           <TransitionGroup>
-            <CSSTransition key={location.key} classNames='page' timeout={500}>
+            <CSSTransition key={location.key} classNames="page" timeout={500}>
               <Switch location={location}>
                 <Route
                   exact
-                  path='/palette/new'
+                  path="/palette/new"
                   render={routeProps => (
                     <Page>
                       <NewPaletteForm
@@ -64,7 +64,7 @@ class App extends Component {
                 />
                 <Route
                   exact
-                  path='/palette/:paletteId/:colorId'
+                  path="/palette/:paletteId/:colorId"
                   render={routeProps => (
                     <Page>
                       <SingleColorPalette
@@ -78,7 +78,7 @@ class App extends Component {
                 />
                 <Route
                   exact
-                  path='/'
+                  path="/"
                   render={routeProps => (
                     <Page>
                       <PaletteList
@@ -91,13 +91,24 @@ class App extends Component {
                 />
                 <Route
                   exact
-                  path='/palette/:id'
+                  path="/palette/:id"
                   render={routeProps => (
                     <Page>
                       <Palette
                         palette={generatePalette(
                           this.findPalette(routeProps.match.params.id)
                         )}
+                      />
+                    </Page>
+                  )}
+                />
+                <Route
+                  render={routeProps => (
+                    <Page>
+                      <PaletteList
+                        palettes={this.state.palettes}
+                        deletePalette={this.deletePalette}
+                        {...routeProps}
                       />
                     </Page>
                   )}
